@@ -1,0 +1,158 @@
+/* ============================================================
+   PoJiang —— 全站共用样式表
+   改这一个文件，首页和 34 篇文章页会同时生效。
+   ============================================================ */
+
+:root{
+  --ink:      #000000;   /* 正文黑  */
+  --prussian: #003153;   /* 普蓝    */
+  --klein:    #002FA7;   /* 克莱因蓝 */
+
+  /* 中文=华光报宋二，英文=Times New Roman。
+     Times New Roman 写在最前面，浏览器逐字回退：
+     拉丁字母用它，中文字自动落到后面的华光报宋二。
+     再往后是备用宋体，访客没装华光报宋二时不至于变成默认字体。 */
+  --serif: "Times New Roman", "华光报宋二", "HuaGuang BaoSong 2",
+           "Source Han Serif SC", "Noto Serif CJK SC",
+           "Songti SC", "STSong", "SimSun", serif;
+
+  /* 文章页字体：按要求统一用华光报宋二（后面几个是备用宋体） */
+  --serif-post: "华光报宋二", "HuaGuang BaoSong 2", "Source Han Serif SC",
+                "Noto Serif CJK SC", "Songti SC", "STSong", "SimSun", serif;
+
+  /* 段与段之间的额外间隔。默认 0 = 行距完全统一（传统中文排版，
+     靠首行空两格区分段落）。想让段落之间松一点，改成 0.8em 之类。 */
+  --para-gap: 0px;
+}
+
+*{ box-sizing: border-box; }
+html{ background:#FFFFFF; }
+
+body{
+  margin:0;
+  background:#FFFFFF;
+  color:var(--ink);
+  font-family:var(--serif);
+  line-height:1.9;
+  text-align:center;          /* 全站居中 */
+  -webkit-font-smoothing:antialiased;
+}
+
+.page{
+  max-width:760px;
+  margin:0 auto;
+  padding:72px 28px 120px;
+}
+
+/* ---------- 首页大标题 / 小标题 ---------- */
+.site-title{
+  font-size:30pt;
+  font-weight:normal;
+  margin:0 0 14px;
+  letter-spacing:.02em;
+}
+.site-subtitle{
+  font-size:12pt;
+  font-style:italic;
+  margin:0 0 72px;
+}
+.prussian{ color:var(--prussian); }
+
+/* ---------- 中标题（20pt，居中）：Content / 故纸堆 / 猜疑链 ---------- */
+h2{
+  font-size:20pt;
+  font-weight:normal;
+  margin:0 0 18px;
+  line-height:1.5;
+}
+h2.bold{ font-weight:bold; }     /* Content 加粗 */
+h2.top { margin-top:56px; }
+h2.sub { margin-top:46px; }      /* 故纸堆 / 猜疑链 */
+
+/* ---------- 分区标题（24pt，斜体，左右带克莱因蓝括号）
+              现实 / X幕剧 / 超现实
+              字号介于 PoJiang（30pt）和中标题（20pt）之间 ---------- */
+h2.section{
+  font-size:24pt;
+  font-style:italic;
+  margin-top:64px;
+}
+h2.section::before{ content:"（"; color:var(--klein); font-style:normal; }
+h2.section::after { content:"）"; color:var(--klein); font-style:normal; }
+
+/* ---------- 小标题 / 目录条目（12pt） ---------- */
+ul.entries{
+  list-style:none;
+  margin:0 0 8px;
+  padding:0;
+}
+ul.entries li{ margin:0 0 7px; }
+ul.entries a{
+  font-size:12pt;
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:border-color .15s ease,color .15s ease;
+}
+ul.entries a:hover,
+ul.entries a:focus-visible{
+  color:var(--prussian);
+  border-bottom-color:var(--prussian);
+}
+
+/* ============================================================
+   文章页
+   字体统一用华光报宋二；标题居中略大，正文居左；
+   每段首行空两格；行间距全篇统一。
+   ============================================================ */
+body.post{
+  font-family:var(--serif-post);
+  text-align:left;
+}
+
+.post-title{
+  font-size:22px;          /* 标题略大于正文 */
+  font-weight:normal;
+  text-align:center;
+  margin:0 0 48px;
+  line-height:1.5;
+}
+
+.post-body{
+  font-size:16px;          /* 手机阅读舒适的字号 */
+  line-height:1.9;         /* 全篇统一行距 */
+  text-align:left;
+}
+.post-body p{
+  margin:0 0 var(--para-gap);
+  text-indent:2em;         /* 每段首行空两格 */
+}
+.post-body strong{ font-weight:bold; }
+
+/* 返回链接 */
+.back{
+  margin-top:72px;
+  font-size:11pt;
+}
+.back a{
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:border-color .15s ease,color .15s ease;
+}
+.back a:hover,
+.back a:focus-visible{
+  color:var(--prussian);
+  border-bottom-color:var(--prussian);
+}
+
+/* ---------- 手机端 ---------- */
+@media (max-width:600px){
+  .page{ padding:48px 20px 80px; }
+  .site-title{ font-size:24pt; }
+  h2{ font-size:17pt; }
+  h2.section{ font-size:20pt; }
+  ul.entries a{ font-size:11.5pt; }
+  .post-title{ font-size:20px; }
+  .post-body { font-size:16px; }
+}
