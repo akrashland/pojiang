@@ -3,72 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PoJiang</title>
+<title>会客室 — PoJiang</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <main class="page">
 
-  <h1 class="site-title">PoJiang</h1>
-  <p class="site-subtitle">他也叫我<span class="prussian">雨天</span></p>
+  <h1 class="sr-only">PoJiang</h1>
 
-  <h2 class="bold">Content</h2>
+  <!-- ===== 顶部导航 ===== -->
+  <nav class="nav">
+    <a href="index.html" aria-current="page">会客室</a>
+    <span class="sep">·</span>
+    <a href="works.html">作品集</a>
+  </nav>
 
-  <h2 class="section">现实</h2>
+  <!-- ===== 首屏：悬挂的吊牌（可拖动） ===== -->
+  <div class="hero">
+    <svg id="tagsvg" viewBox="0 0 420 300" aria-hidden="true">
+      <!-- 挂钉 -->
+      <circle class="peg" cx="210" cy="8" r="3.5"></circle>
+      <!-- 绳子 -->
+      <path id="cord" class="cord" d=""></path>
+      <!-- 吊牌 -->
+      <g id="tag">
+        <circle class="hole" cx="0" cy="0" r="5"></circle>
+        <rect class="card" x="-76" y="13" width="152" height="94" rx="3"></rect>
+        <text class="card-name" x="0" y="55" text-anchor="middle">PoJiang</text>
+        <text class="card-sub"  x="0" y="84" text-anchor="middle">他也叫我雨天</text>
+      </g>
+    </svg>
+    <p class="hero-hint">拖 动 看 看</p>
+  </div>
 
-  <h2 class="sub">故纸堆</h2>
-  <ul class="entries">
-    <li><a href="posts/linran.html">凛然</a></li>
-    <li><a href="posts/bleu.html">Bleu</a></li>
-    <li><a href="posts/beautiful-lies.html">Beautiful Lies</a></li>
-    <li><a href="posts/yue-you-yin-qing-yuan-que.html">月有阴晴圆缺</a></li>
-    <li><a href="posts/wu-jia-po.html">武家坡</a></li>
-    <li><a href="posts/liu-nian-bu-li.html">流年不利</a></li>
-    <li><a href="posts/er-ding.html">耳钉</a></li>
-    <li><a href="posts/wu-wei-duo-shi.html">无谓多食</a></li>
-    <li><a href="posts/leng-feng-guo-jing.html">冷锋过境</a></li>
-    <li><a href="posts/jie-shi-huan-hun.html">借尸还魂</a></li>
-    <li><a href="posts/wu-yue-si-ri.html">5月4日</a></li>
-    <li><a href="posts/oh-sky.html">Oh Sky</a></li>
-    <li><a href="posts/chang-jian.html">场间</a></li>
-    <li><a href="posts/lun-hua-ping.html">论花瓶</a></li>
-  </ul>
+  <!-- ===== 跑马灯 ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>PoJiang</span><span class="dot">✦</span><span>他也叫我雨天</span><span class="dot">✦</span><span>PoJiang</span><span class="dot">✦</span><span>他也叫我雨天</span><span class="dot">✦</span><span>PoJiang</span><span class="dot">✦</span><span>他也叫我雨天</span><span class="dot">✦</span><span>PoJiang</span><span class="dot">✦</span><span>他也叫我雨天</span><span class="dot">✦</span>
+    </div>
+  </div>
 
-  <h2 class="sub">猜疑链</h2>
-  <ul class="entries">
-    <li><a href="posts/gei-ni-yi-zhang-guo-qu-de-cd.html">给你一张过去的CD</a></li>
-    <li><a href="posts/zai-jing-hou.html">再静候</a></li>
-    <li><a href="posts/yi-ka-luo-si.html">伊卡洛斯</a></li>
-    <li><a href="posts/cheque.html">Cheque</a></li>
-    <li><a href="posts/hao-jie-ju-huai-jie-ju.html">好结局，坏结局</a></li>
-    <li><a href="posts/lensphobia.html">Lensphobia</a></li>
-    <li><a href="posts/liu-gei-zuo-tian.html">留给昨天</a></li>
-    <li><a href="posts/champion-player.html">Champion Player</a></li>
-  </ul>
+  <div class="room">
 
-  <h2 class="section">X幕剧</h2>
-  <ul class="entries">
-    <li><a href="posts/qi.html">契</a></li>
-    <li><a href="posts/xiang-yu-wei-jian.html">相与为剑</a></li>
-    <li><a href="posts/bao-shi-zhi-guo.html">宝石之国</a></li>
-    <li><a href="posts/gao-si-niao.html">告死鸟</a></li>
-    <li><a href="posts/ting-ting-ru-gai.html">亭亭如盖</a></li>
-  </ul>
+    <!-- ↓↓↓ 这段是占位文字，请换成你自己的话 ↓↓↓ -->
+    <p>这里是 PoJiang 的会客室。</p>
+    <p class="quiet">（这几行换成你想说的——写作的缘起、最近在写什么，或者只是一句招呼。我照着你给的字数重排就行。）</p>
+    <!-- ↑↑↑ 占位文字到此为止 ↑↑↑ -->
 
-  <h2 class="section">超现实</h2>
-  <ul class="entries">
-    <li><a href="posts/yin-he-tie-dao-zhi-ye.html">银河铁道之夜</a></li>
-    <li><a href="posts/aiweilao-shen-1.html">听说艾薇捞真的有神，神还是个串子神</a></li>
-    <li><a href="posts/san-gen-huo-chai.html">三根火柴</a></li>
-    <li><a href="posts/good-omens.html">Good Omens</a></li>
-    <li><a href="posts/lesson-farewell.html">Lesson Farewell</a></li>
-    <li><a href="posts/aiweilao-shen-2.html">听说艾薇捞真的有神，神最恨的就是草团魂</a></li>
-    <li><a href="posts/shou-gu.html">授骨</a></li>
-    <li><a href="posts/manimani.html">まにまに</a></li>
-    <li><a href="posts/da-qi-wan-cheng.html">大器晚成</a></li>
-  </ul>
+    <h2>近作</h2>
+    <ul>
+      <li><a href="posts/manimani.html">まにまに</a></li>
+      <li><a href="posts/wu-yue-si-ri.html">5月4日</a></li>
+      <li><a href="posts/wu-jia-po.html">武家坡</a></li>
+    </ul>
+    <p class="more"><a href="works.html">全部篇目 →</a></p>
+
+    <h2>别处</h2>
+    <ul>
+      <!-- 换成你自己的链接；不需要的整行删掉 -->
+      <li><a href="#">LOFTER</a></li>
+      <li><a href="#">微博</a></li>
+    </ul>
+
+  </div>
 
 </main>
+
+<script>
+(function () {
+  var svg  = document.getElementById('tagsvg');
+  var cord = document.getElementById('cord');
+  var tag  = document.getElementById('tag');
+  if (!svg || !cord || !tag) return;
+
+  var ANCHOR = { x: 210, y: 8 };   // 挂钉位置
+  var N = 9;                        // 绳子节点数
+  var SEG = 19;                     // 每段长度
+  var MAXLEN = (N - 1) * SEG;       // 绳子总长（拖拽时不许超过）
+  var GRAVITY = 0.55;
+  var DAMPING = 0.985;
+
+  var pts = [];
+  for (var i = 0; i < N; i++) {
+    pts.push({ x: ANCHOR.x, y: ANCHOR.y + i * SEG,
+               px: ANCHOR.x, py: ANCHOR.y + i * SEG });
+  }
+
+  function draw() {
+    var d = 'M';
+    for (var i = 0; i < N; i++) {
+      d += (i ? 'L' : '') + pts[i].x.toFixed(2) + ',' + pts[i].y.toFixed(2);
+    }
+    cord.setAttribute('d', d);
+    var a = pts[N - 2], b = pts[N - 1];
+    var ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI - 90;
+    tag.setAttribute('transform',
+      'translate(' + b.x.toFixed(2) + ',' + b.y.toFixed(2) + ') rotate(' + ang.toFixed(2) + ')');
+  }
+
+  // 系统里关掉了动效 → 静止挂着，不做物理
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (still) { draw(); return; }
+
+  var dragging = false, drag = { x: 0, y: 0 };
+
+  function step() {
+    // 惯性
+    for (var i = 1; i < N; i++) {
+      var p = pts[i];
+      var vx = (p.x - p.px) * DAMPING;
+      var vy = (p.y - p.py) * DAMPING;
+      p.px = p.x; p.py = p.y;
+      p.x += vx; p.y += vy + GRAVITY;
+    }
+    // 约束：固定挂钉、保持段长、拖拽时锁住末端
+    for (var k = 0; k < 24; k++) {
+      pts[0].x = ANCHOR.x; pts[0].y = ANCHOR.y;
+      if (dragging) { pts[N - 1].x = drag.x; pts[N - 1].y = drag.y; }
+      for (var j = 0; j < N - 1; j++) {
+        var a = pts[j], b = pts[j + 1];
+        var dx = b.x - a.x, dy = b.y - a.y;
+        var dist = Math.sqrt(dx * dx + dy * dy) || 0.0001;
+        var f = ((dist - SEG) / dist) * 0.5;
+        var ox = dx * f, oy = dy * f;
+        if (j !== 0)                        { a.x += ox; a.y += oy; }
+        if (!(dragging && j + 1 === N - 1)) { b.x -= ox; b.y -= oy; }
+      }
+    }
+    draw();
+    raf = requestAnimationFrame(step);
+  }
+
+  function toSvg(e) {
+    var pt = svg.createSVGPoint();
+    pt.x = e.clientX; pt.y = e.clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse());
+  }
+
+  svg.addEventListener('pointerdown', function (e) {
+    dragging = true;
+    svg.classList.add('dragging');
+    if (svg.setPointerCapture) svg.setPointerCapture(e.pointerId);
+    var p = toSvg(e);
+    drag.x = p.x; drag.y = p.y;
+    e.preventDefault();
+  });
+
+  svg.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    var p = toSvg(e);
+    // 不许拽出绳长
+    var dx = p.x - ANCHOR.x, dy = p.y - ANCHOR.y;
+    var dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist > MAXLEN) { p.x = ANCHOR.x + dx / dist * MAXLEN; p.y = ANCHOR.y + dy / dist * MAXLEN; }
+    drag.x = p.x; drag.y = p.y;
+  });
+
+  function release(e) {
+    if (!dragging) return;
+    dragging = false;
+    svg.classList.remove('dragging');
+    if (svg.releasePointerCapture && e.pointerId !== undefined) {
+      try { svg.releasePointerCapture(e.pointerId); } catch (err) {}
+    }
+  }
+  svg.addEventListener('pointerup', release);
+  svg.addEventListener('pointercancel', release);
+
+  // 开场轻轻荡一下
+  pts[N - 1].px -= 17;
+
+  var raf = requestAnimationFrame(step);
+
+  // 切到别的标签页就停，省电
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { cancelAnimationFrame(raf); }
+    else { raf = requestAnimationFrame(step); }
+  });
+})();
+</script>
 </body>
 </html>
