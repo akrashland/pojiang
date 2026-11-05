@@ -159,10 +159,54 @@ body.post{
 }
 
 /* ============================================================
-   会客室（index.html）
+   首页（index.html）—— 按设计稿 1:1 复刻
+   图形是从设计稿矢量化出来的路径，所以放大不会糊。
    ============================================================ */
 
-/* ---------- 顶部导航：全站通用 ---------- */
+body.home{
+  margin:0;
+  min-height:100vh;
+  background:#FFFFFF;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+.stage{ width:100%; max-width:1180px; }
+
+/* 图形定义本身不显示 */
+svg.defs{
+  position:absolute;
+  width:0; height:0;
+  overflow:hidden;
+}
+
+.art{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.ink  { fill:#000000; fill-rule:evenodd; }
+.drop { fill:#005EFF; fill-rule:evenodd; }
+
+/* writing pieces 的点击区 */
+a.hit{ cursor:pointer; }
+a.hit .ink{ transition:fill .18s ease; }
+a.hit:hover .ink,
+a.hit:focus-visible .ink{ fill:#005EFF; }
+a.hit:focus{ outline:none; }
+
+/* 宽屏用横版，窄屏用竖版 */
+.art-tall{ display:none; }
+@media (max-width:760px){
+  body.home{ padding:20px; }
+  .art-wide{ display:none; }
+  .art-tall{ display:block; max-width:430px; margin:0 auto; }
+}
+
+/* ---------- 顶部导航（作品集等内页用） ---------- */
 .nav{
   font-size:11.5pt;
   letter-spacing:.04em;
@@ -177,124 +221,10 @@ body.post{
 }
 .nav a:hover,
 .nav a:focus-visible{
-  color:var(--klein);
-  border-bottom-color:var(--klein);
-}
-.nav a[aria-current="page"]{
-  color:var(--klein);
-  border-bottom-color:var(--klein);
+  color:#005EFF;
+  border-bottom-color:#005EFF;
 }
 .nav .sep{ color:#bbb; margin:0 .9em; }
-
-/* ---------- 首屏：悬挂的工牌（可拖动） ---------- */
-.hero{
-  margin:0 0 6px;
-  touch-action:none;          /* 手机上拖拽时不要跟着滚页面 */
-  user-select:none;
-}
-.hero svg{
-  display:block;
-  width:100%;
-  max-width:430px;
-  height:auto;
-  margin:0 auto;
-  overflow:visible;
-  cursor:grab;
-}
-.hero svg.dragging{ cursor:grabbing; }
-
-/* 挂钉 */
-.peg      { fill:#4a4a4a; }
-.peg-hi   { fill:#fff; opacity:.5; }
-
-/* 尼龙织带：三层叠出圆弧厚度，再加横向织纹 */
-.band-dark{ fill:#16254A; }
-.band-mid { fill:#26406E; }
-.band-hi  { fill:#3F639E; opacity:.55; }
-.band-weave{
-  fill:none;
-  stroke:#101B38;
-  stroke-width:.7;
-  opacity:.32;
-}
-
-/* 卡面文字 */
-.card-given{
-  font-family:var(--serif);
-  font-size:30px;
-  letter-spacing:.01em;
-  fill:var(--ink);
-}
-.card-family{
-  font-family:var(--serif);
-  font-size:17px;
-  letter-spacing:.14em;
-  fill:var(--klein);
-}
-
-.hero-hint{
-  font-size:9.5pt;
-  color:#b4b4b4;
-  letter-spacing:.08em;
-  margin:2px 0 0;
-}
-
-/* ---------- 跑马灯 ---------- */
-.marquee{
-  overflow:hidden;
-  white-space:nowrap;
-  margin:40px 0 72px;
-  border-top:1px solid #eee;
-  border-bottom:1px solid #eee;
-  padding:10px 0;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
-          mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
-}
-.marquee-track{ display:inline-block; animation:marquee 38s linear infinite; }
-.marquee span{
-  font-size:11pt;
-  letter-spacing:.14em;
-  color:#9a9a9a;
-  padding-right:2.2em;
-}
-.marquee .dot{ color:var(--klein); padding-right:2.2em; }
-@keyframes marquee{
-  from{ transform:translateX(0); }
-  to  { transform:translateX(-50%); }
-}
-
-/* ---------- 会客室正文块 ---------- */
-.room{ max-width:34em; margin:0 auto; }
-.room p{ font-size:12.5pt; line-height:2.1; margin:0 0 1.6em; }
-.room .quiet{ color:#8a8a8a; font-size:11pt; }
-
-.room h2{ font-size:15pt; margin:64px 0 20px; }
-.room h2::before{ content:"（"; color:var(--klein); }
-.room h2::after { content:"）"; color:var(--klein); }
-
-.room ul{ list-style:none; margin:0; padding:0; }
-.room ul li{ margin:0 0 9px; }
-.room ul a{
-  font-size:12pt;
-  color:var(--ink);
-  text-decoration:none;
-  border-bottom:1px solid transparent;
-  transition:border-color .15s ease,color .15s ease;
-}
-.room ul a:hover,
-.room ul a:focus-visible{
-  color:var(--prussian);
-  border-bottom-color:var(--prussian);
-}
-
-.room .more{ margin-top:26px; font-size:11pt; }
-.room .more a{
-  color:var(--klein);
-  text-decoration:none;
-  border-bottom:1px solid transparent;
-}
-.room .more a:hover,
-.room .more a:focus-visible{ border-bottom-color:var(--klein); }
 
 /* 只给读屏软件看的文字 */
 .sr-only{
@@ -305,18 +235,4 @@ body.post{
   clip:rect(0 0 0 0);
   white-space:nowrap;
   border:0;
-}
-
-/* ---------- 手机端 ---------- */
-@media (max-width:600px){
-  .nav{ margin-bottom:36px; }
-  .nav .sep{ margin:0 .6em; }
-  .marquee{ margin:30px 0 56px; }
-  .room p{ font-size:12pt; line-height:2.0; }
-  .room h2{ font-size:14pt; margin-top:52px; }
-}
-
-/* 用户在系统里关掉了动效：跑马灯静止 */
-@media (prefers-reduced-motion:reduce){
-  .marquee-track{ animation:none; }
 }
