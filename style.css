@@ -466,3 +466,39 @@ figcaption{
   z-index:2;
   filter:drop-shadow(0 1px 4px rgba(255,255,255,.9));
 }
+
+/* ============================================================
+   内页的「回首页」：固定在画面左上角
+   works.html 和 gallery.html 共用
+   ============================================================ */
+.nav{
+  position:absolute;
+  top:26px;
+  left:30px;
+  margin:0;
+  text-align:left;
+  font-family:"Times New Roman",Times,serif;
+  font-size:14px;
+  letter-spacing:.04em;
+  z-index:5;
+}
+.nav a{
+  color:#000000;
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  padding-bottom:2px;
+  transition:color .18s ease, border-color .18s ease;
+}
+.nav a:hover,
+.nav a:focus-visible{
+  color:#005EFF;
+  border-bottom-color:#005EFF;
+}
+
+/* 作品集页原本靠导航撑出的上边距，现在导航脱离了文档流，补回来 */
+body:not(.home):not(.gal) .page{ padding-top:84px; }
+
+@media (max-width:600px){
+  .nav{ top:18px; left:20px; font-size:13px; }
+  body:not(.home):not(.gal) .page{ padding-top:64px; }
+}
