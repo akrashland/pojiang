@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gallery 画廊 — Pojiang's</title>
+<link rel="stylesheet" href="style.css?v=4">
+</head>
+
+<body class="gal">
+
+<main class="gal-page">
+
+  <nav class="nav"><a href="index.html">← 回首页</a></nav>
+
+  <h1 class="gal-title"><span class="en">gallery</span><span class="zh">(画廊)</span></h1>
+
+  <div class="grid">
+
+    <!-- 一条视频＝一个 figure。bv 填 BV 号，data-title 是显示的标题 -->
+    <figure class="vid" data-bv="BV1WDZxB4EXG">
+      <div class="frame">
+        <button class="cover" type="button" aria-label="播放这条视频">
+          <svg class="playdrop" viewBox="0 0 65 106" aria-hidden="true"><path fill="#005EFF" d="M20.0,103.9C12.5,100.9 5.0,93.2 2.1,85.5C0.2,80.6 -0.1,78.1 0.2,71.8C0.7,64.3 0.9,63.6 16.0,32.8C24.4,15.6 31.6,1.2 31.9,0.8C32.3,0.4 39.6,14.6 48.3,32.5L64.1,64.8L64.1,73.4C64.2,80.4 63.7,82.9 61.7,87.3C58.8,93.6 52.8,99.8 46.2,103.0C39.4,106.4 27.5,106.8 20.0,103.9Z"/></svg>
+        </button>
+      </div>
+      <figcaption>
+        <span class="cap">示例视频</span>
+        <a class="src" href="https://www.bilibili.com/video/BV1WDZxB4EXG/" target="_blank" rel="noopener">在 B 站打开 ↗</a>
+      </figcaption>
+    </figure>
+
+  </div>
+
+</main>
+
+<script>
+(function () {
+  var PLAYER = 'https://player.bilibili.com/player.html';
+
+  function build(bv, autoplay) {
+    var f = document.createElement('iframe');
+    f.src = PLAYER + '?bvid=' + encodeURIComponent(bv) +
+            '&p=1&danmaku=0&high_quality=0' +
+            (autoplay ? '&autoplay=1&muted=1' : '&autoplay=0');
+    f.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
+    f.setAttribute('allowfullscreen', 'true');
+    f.setAttribute('scrolling', 'no');
+    f.setAttribute('frameborder', 'no');
+    f.setAttribute('loading', 'lazy');
+    return f;
+  }
+
+  document.querySelectorAll('.vid').forEach(function (fig) {
+    var bv    = fig.dataset.bv;
+    var frame = fig.querySelector('.frame');
+    var pinned = false;          // 点过之后就留着，不再随鼠标移开而卸掉
+    var timer  = null;
+
+    function show(autoplay) {
+      if (frame.querySelector('iframe')) return;
+      frame.appendChild(build(bv, autoplay));
+      fig.classList.add('playing');
+    }
+    function hide() {
+      if (pinned) return;
+      var f = frame.querySelector('iframe');
+      if (f) f.remove();              // 移除 iframe 才能真正停掉播放
+      fig.classList.remove('playing');
+    }
+
+    // 悬停：稍等 180ms 再加载，避免鼠标扫过就狂开 iframe
+    fig.addEventListener('pointerenter', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      clearTimeout(timer);
+      timer = setTimeout(function () { show(true); }, 180);
+    });
+    fig.addEventListener('pointerleave', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      clearTimeout(timer);
+      hide();
+    });
+
+    // 点击（手机也走这条）：加载并保持，这时才能有声音
+    fig.querySelector('.cover').addEventListener('click', function () {
+      pinned = true;
+      show(true);
+    });
+    fig.addEventListener('click', function () { pinned = true; });
+  });
+})();
+</script>
+</body>
+</html>
