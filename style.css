@@ -367,7 +367,9 @@ body.gal{
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  /* auto-fit + 居中：视频少的时候整体居中，不会孤零零贴在左边 */
+  grid-template-columns:repeat(auto-fit,minmax(320px,380px));
+  justify-content:center;
   gap:48px 36px;
 }
 
