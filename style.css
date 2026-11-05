@@ -20,9 +20,10 @@
   --serif-post: "华光报宋二", "HuaGuang BaoSong 2", "Source Han Serif SC",
                 "Noto Serif CJK SC", "Songti SC", "STSong", "SimSun", serif;
 
-  /* 段与段之间的额外间隔。默认 0 = 行距完全统一（传统中文排版，
-     靠首行空两格区分段落）。想让段落之间松一点，改成 0.8em 之类。 */
-  --para-gap: 0px;
+  /* 段与段之间的额外间隔。1.9em = 一整行的高度，
+     因此段落之间的距离正好是段内行距的两倍。
+     想更松改大、更紧改小（0 = 完全统一的行距）。 */
+  --para-gap: 1.9em;
 }
 
 *{ box-sizing: border-box; }
@@ -125,7 +126,7 @@ body.post{
 }
 .post-body p{
   margin:0 0 var(--para-gap);
-  text-indent:2em;         /* 每段首行空两格 */
+  text-indent:0;           /* 不缩进，段落靠间距区分 */
 }
 .post-body strong{ font-weight:bold; }
 
