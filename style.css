@@ -159,80 +159,174 @@ body.post{
 }
 
 /* ============================================================
-   首页（index.html）—— 按设计稿 1:1 复刻
-   图形是从设计稿矢量化出来的路径，所以放大不会糊。
+   首页（index.html）
+   字标是从设计稿矢量化来的；其余文字是真文字：
+   英文 Times New Roman 斜体，中文思源宋体 Light。
+   一套元素两种排法，靠 CSS 换位置，不存在两份内容。
    ============================================================ */
+
+@font-face{
+  font-family:"Noto Serif SC Subset";
+  src:url("NotoSerifSC-Light-subset.woff2") format("woff2");
+  font-weight:300;
+  font-style:normal;
+  font-display:swap;
+}
+
+:root{
+  --drop-blue:#005EFF;
+}
+
+/* 中文细宋：自带的子集字体优先，其次系统里的思源/宋体 */
+.zh-light{
+  font-family:"Noto Serif SC Subset","Source Han Serif SC","Noto Serif SC",
+              "Source Han Serif CN","Songti SC","STSong","SimSun",serif;
+  font-weight:300;
+}
 
 body.home{
   margin:0;
-  min-height:100vh;
   background:#FFFFFF;
+  color:#000000;
+}
+
+.screen{
+  min-height:100vh;
+  min-height:100svh;
   display:flex;
+  box-sizing:border-box;
+}
+
+/* ---------- 第一屏 ---------- */
+.screen.one{
   align-items:center;
   justify-content:center;
   padding:24px;
 }
 
-.stage{ width:100%; max-width:1180px; }
-
-/* 图形定义本身不显示 */
-svg.defs{
-  position:absolute;
-  width:0; height:0;
-  overflow:hidden;
+/* 按设计稿 1920×1080 的比例立一块画布，元素全部按百分比落位 */
+.canvas{
+  position:relative;
+  width:100%;
+  max-width:1180px;
+  aspect-ratio:1920 / 1080;
+  container-type:inline-size;
 }
 
-.art{
-  display:block;
-  width:100%;
+.wordmark{
+  position:absolute;
+  left:21.980%;
+  top:14.907%;
+  width:54.427%;
   height:auto;
 }
 
-.ink  { fill:#000000; fill-rule:evenodd; }
-.drop { fill:#005EFF; fill-rule:evenodd; }
-
-/* writing pieces 的点击区 */
-a.hit{ cursor:pointer; }
-a.hit .ink{ transition:fill .18s ease; }
-a.hit:hover .ink,
-a.hit:focus-visible .ink{ fill:#005EFF; }
-a.hit:focus{ outline:none; }
-
-/* 宽屏用横版，窄屏用竖版 */
-.art-tall{ display:none; }
-@media (max-width:760px){
-  body.home{ padding:20px; }
-  .art-wide{ display:none; }
-  .art-tall{ display:block; max-width:430px; margin:0 auto; }
-}
-
-/* ---------- 顶部导航（作品集等内页用） ---------- */
-.nav{
-  font-size:11.5pt;
-  letter-spacing:.04em;
-  margin:0 0 48px;
-}
-.nav a{
-  color:var(--ink);
-  text-decoration:none;
-  border-bottom:1px solid transparent;
-  padding-bottom:2px;
-  transition:border-color .15s ease,color .15s ease;
-}
-.nav a:hover,
-.nav a:focus-visible{
-  color:#005EFF;
-  border-bottom-color:#005EFF;
-}
-.nav .sep{ color:#bbb; margin:0 .9em; }
-
-/* 只给读屏软件看的文字 */
-.sr-only{
+.drops{ position:absolute; inset:0; pointer-events:none; }
+.drop{
   position:absolute;
-  width:1px; height:1px;
-  padding:0; margin:-1px;
-  overflow:hidden;
-  clip:rect(0 0 0 0);
+  top:37.037%;
+  width:3.385%;
+  height:auto;
+}
+.drop-l{ left:6.302%; }
+.drop-r{ left:91.667%; }
+
+.tabs{ position:absolute; inset:0; }
+.tab{
+  position:absolute;
+  top:78.88%;
+  transform:translateX(-50%);
+  text-align:center;
   white-space:nowrap;
-  border:0;
+  text-decoration:none;
+  color:#000000;
+}
+.t1{ left:11.302%; }
+.t2{ left:50.260%; }
+.t3{ left:91.797%; }
+
+.tab .en{
+  display:block;
+  font-family:"Times New Roman",Times,serif;
+  font-style:italic;
+  font-size:2.27cqi;
+  line-height:1.30;
+}
+.tab .zh{
+  display:block;
+  font-family:"Noto Serif SC Subset","Source Han Serif SC","Noto Serif SC",
+              "Source Han Serif CN","Songti SC","STSong","SimSun",serif;
+  font-weight:300;
+  font-size:2.265cqi;
+  line-height:1.30;
+  margin-top:0.47cqi;
+}
+
+a.tab .en, a.tab .zh{ transition:color .18s ease; }
+a.tab:hover .en, a.tab:hover .zh,
+a.tab:focus-visible .en, a.tab:focus-visible .zh{ color:var(--drop-blue); }
+
+/* ---------- 第二屏：留白，顶端一句题记 ---------- */
+.screen.two{
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  padding:7vh 24px 80px;
+}
+.epigraph{
+  margin:0;
+  font-family:"Noto Serif SC Subset","Source Han Serif SC","Noto Serif SC",
+              "Source Han Serif CN","Songti SC","STSong","SimSun",serif;
+  font-weight:300;
+  color:#BDBDBD;
+  letter-spacing:.07em;
+  font-size:clamp(14px, 1.35vw, 24px);
+  line-height:2;
+  text-align:center;
+}
+
+/* ---------- 窄屏：同一批元素，竖着重排 ---------- */
+@media (max-width:760px){
+  .screen.one{ padding:20px; }
+
+  .canvas{
+    aspect-ratio:auto;
+    max-width:460px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  /* 解除绝对定位，改成顺着排 */
+  .canvas .wordmark,
+  .canvas .drops,
+  .canvas .drop,
+  .canvas .tabs,
+  .canvas .tab{
+    position:static;
+    inset:auto;
+    left:auto;
+    top:auto;
+    transform:none;
+  }
+  .wordmark{ width:94%; }
+
+  .drops{
+    display:flex;
+    justify-content:center;
+    gap:46vw;
+    margin:26px 0 42px;
+  }
+  .drop{ width:22px; }
+
+  .tabs{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:26px;
+  }
+  .tab .en{ font-size:17px; }
+  .tab .zh{ font-size:18px; }
+
+  .screen.two{ padding:6vh 22px 60px; }
+  .epigraph{ font-size:15px; letter-spacing:.05em; }
 }
