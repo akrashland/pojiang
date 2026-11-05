@@ -444,3 +444,23 @@ figcaption{
   .gal-title .en{ font-size:25px; }
   .grid{ grid-template-columns:1fr; gap:36px; }
 }
+
+/* 画廊封面图 */
+.cover picture,
+.cover img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+.cover img{
+  object-fit:cover;
+  transition:transform .4s ease, filter .25s ease;
+}
+.vid:hover .cover img{ transform:scale(1.025); filter:brightness(.97); }
+.playdrop{
+  position:relative;
+  z-index:2;
+  filter:drop-shadow(0 1px 4px rgba(255,255,255,.9));
+}
