@@ -166,7 +166,7 @@ body.post{
 .nav{
   font-size:11.5pt;
   letter-spacing:.04em;
-  margin:0 0 56px;
+  margin:0 0 48px;
 }
 .nav a{
   color:var(--ink);
@@ -184,21 +184,18 @@ body.post{
   color:var(--klein);
   border-bottom-color:var(--klein);
 }
-.nav .sep{
-  color:#bbb;
-  margin:0 .9em;
-}
+.nav .sep{ color:#bbb; margin:0 .9em; }
 
-/* ---------- 首屏：悬挂的吊牌 ---------- */
+/* ---------- 首屏：悬挂的工牌（可拖动） ---------- */
 .hero{
-  margin:0 0 8px;
-  touch-action:none;            /* 手机上拖拽时不要跟着滚页面 */
+  margin:0 0 6px;
+  touch-action:none;          /* 手机上拖拽时不要跟着滚页面 */
   user-select:none;
 }
 .hero svg{
   display:block;
   width:100%;
-  max-width:420px;
+  max-width:430px;
   height:auto;
   margin:0 auto;
   overflow:visible;
@@ -206,59 +203,54 @@ body.post{
 }
 .hero svg.dragging{ cursor:grabbing; }
 
-.hero .cord{
+/* 挂钉 */
+.peg      { fill:#4a4a4a; }
+.peg-hi   { fill:#fff; opacity:.5; }
+
+/* 尼龙织带：三层叠出圆弧厚度，再加横向织纹 */
+.band-dark{ fill:#16254A; }
+.band-mid { fill:#26406E; }
+.band-hi  { fill:#3F639E; opacity:.55; }
+.band-weave{
   fill:none;
-  stroke:var(--klein);
-  stroke-width:2;
-  stroke-linecap:round;
+  stroke:#101B38;
+  stroke-width:.7;
+  opacity:.32;
 }
-.hero .peg{ fill:var(--ink); }
-.hero .card{
-  fill:#FFFFFF;
-  stroke:var(--ink);
-  stroke-width:1.1;
-}
-.hero .hole{
-  fill:#FFFFFF;
-  stroke:var(--ink);
-  stroke-width:1.1;
-}
-.hero .card-name{
+
+/* 卡面文字 */
+.card-given{
   font-family:var(--serif);
-  font-size:21px;
-  letter-spacing:.03em;
+  font-size:30px;
+  letter-spacing:.01em;
   fill:var(--ink);
 }
-.hero .card-sub{
+.card-family{
   font-family:var(--serif);
-  font-size:11px;
-  font-style:italic;
-  fill:var(--prussian);
+  font-size:17px;
+  letter-spacing:.14em;
+  fill:var(--klein);
 }
 
 .hero-hint{
   font-size:9.5pt;
-  color:#aaa;
+  color:#b4b4b4;
   letter-spacing:.08em;
-  margin:4px 0 0;
+  margin:2px 0 0;
 }
 
 /* ---------- 跑马灯 ---------- */
 .marquee{
   overflow:hidden;
   white-space:nowrap;
-  margin:44px 0 72px;
+  margin:40px 0 72px;
   border-top:1px solid #eee;
   border-bottom:1px solid #eee;
   padding:10px 0;
-  /* 两端淡出，避免字被边缘切断得太生硬 */
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
           mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
 }
-.marquee-track{
-  display:inline-block;
-  animation:marquee 38s linear infinite;
-}
+.marquee-track{ display:inline-block; animation:marquee 38s linear infinite; }
 .marquee span{
   font-size:11pt;
   letter-spacing:.14em;
@@ -272,29 +264,15 @@ body.post{
 }
 
 /* ---------- 会客室正文块 ---------- */
-.room{
-  max-width:34em;
-  margin:0 auto;
-}
-.room p{
-  font-size:12.5pt;
-  line-height:2.1;
-  margin:0 0 1.6em;
-}
+.room{ max-width:34em; margin:0 auto; }
+.room p{ font-size:12.5pt; line-height:2.1; margin:0 0 1.6em; }
 .room .quiet{ color:#8a8a8a; font-size:11pt; }
 
-.room h2{
-  font-size:15pt;
-  margin:64px 0 20px;
-}
+.room h2{ font-size:15pt; margin:64px 0 20px; }
 .room h2::before{ content:"（"; color:var(--klein); }
 .room h2::after { content:"）"; color:var(--klein); }
 
-.room ul{
-  list-style:none;
-  margin:0;
-  padding:0;
-}
+.room ul{ list-style:none; margin:0; padding:0; }
 .room ul li{ margin:0 0 9px; }
 .room ul a{
   font-size:12pt;
@@ -309,10 +287,7 @@ body.post{
   border-bottom-color:var(--prussian);
 }
 
-.room .more{
-  margin-top:26px;
-  font-size:11pt;
-}
+.room .more{ margin-top:26px; font-size:11pt; }
 .room .more a{
   color:var(--klein);
   text-decoration:none;
@@ -334,9 +309,9 @@ body.post{
 
 /* ---------- 手机端 ---------- */
 @media (max-width:600px){
-  .nav{ margin-bottom:40px; }
+  .nav{ margin-bottom:36px; }
   .nav .sep{ margin:0 .6em; }
-  .marquee{ margin:32px 0 56px; }
+  .marquee{ margin:30px 0 56px; }
   .room p{ font-size:12pt; line-height:2.0; }
   .room h2{ font-size:14pt; margin-top:52px; }
 }
