@@ -597,3 +597,19 @@ body.has-bgm .page{ padding-bottom:150px; }
 @media (max-width:600px){
   .bgm{ bottom:14px; padding:8px 14px 8px 8px; gap:12px; }
 }
+
+/* 画廊水滴：发光的白色。外圈白光 + 极淡的暗边，浅色封面上也看得清 */
+.playdrop{
+  opacity:.92;
+  filter:
+    drop-shadow(0 0 2px rgba(255,255,255,.95))
+    drop-shadow(0 0 9px rgba(255,255,255,.85))
+    drop-shadow(0 1px 3px rgba(12,21,38,.35));
+}
+.vid:hover .playdrop{
+  opacity:1;
+  filter:
+    drop-shadow(0 0 3px rgba(255,255,255,1))
+    drop-shadow(0 0 14px rgba(255,255,255,.95))
+    drop-shadow(0 1px 3px rgba(12,21,38,.35));
+}
