@@ -7,10 +7,24 @@
 <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="post">
+<body class="post has-bgm">
 <main class="page">
 
   <h1 class="post-title">走马</h1>
+
+  <!-- BGM 播放栏：点击播放，循环 -->
+  <div class="bgm" id="bgm">
+    <button class="bgm-btn" type="button" aria-label="播放背景音乐">
+      <svg class="i-play" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.2v9.6L10.5 6z"/></svg>
+      <svg class="i-pause" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5h2.4v9H2.5zM7.1 1.5h2.4v9H7.1z"/></svg>
+    </button>
+    <div class="bgm-info">
+      <span class="bgm-title"><span class="zh">走马</span> <i>— 陈粒</i></span>
+      <span class="bgm-bar"><span class="bgm-fill"></span></span>
+    </div>
+    <span class="bgm-time">BGM</span>
+    <audio src="../audio/zou-ma.mp3" preload="none" loop></audio>
+  </div>
 
   <!-- ↓↓↓ 正文。每一个自然段包一对 <p> ... </p>，加粗用 <strong> ↓↓↓ -->
   <div class="post-body">
@@ -57,5 +71,26 @@
   <p class="back"><a href="../works.html">← 返回目录</a></p>
 
 </main>
+
+<script>
+(function(){
+  var box=document.getElementById('bgm');
+  var a=box.querySelector('audio'), btn=box.querySelector('.bgm-btn'),
+      bar=box.querySelector('.bgm-bar'), fill=box.querySelector('.bgm-fill'),
+      t=box.querySelector('.bgm-time');
+  function fmt(s){ s=Math.floor(s||0); return Math.floor(s/60)+':'+('0'+s%60).slice(-2); }
+  btn.addEventListener('click',function(){ a.paused ? a.play() : a.pause(); });
+  a.addEventListener('play', function(){ box.classList.add('playing');    btn.setAttribute('aria-label','暂停背景音乐'); });
+  a.addEventListener('pause',function(){ box.classList.remove('playing'); btn.setAttribute('aria-label','播放背景音乐'); });
+  a.addEventListener('timeupdate',function(){
+    if(a.duration){ fill.style.width=(a.currentTime/a.duration*100)+'%'; t.textContent=fmt(a.currentTime); }
+  });
+  bar.addEventListener('click',function(e){
+    var r=bar.getBoundingClientRect(), p=(e.clientX-r.left)/r.width;
+    function go(){ a.currentTime=Math.max(0,Math.min(1,p))*a.duration; }
+    if(a.duration) go(); else { a.addEventListener('loadedmetadata',go,{once:true}); a.play(); }
+  });
+})();
+</script>
 </body>
 </html>

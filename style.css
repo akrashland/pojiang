@@ -502,3 +502,98 @@ body:not(.home):not(.gal) .page{ padding-top:84px; }
   .nav{ top:18px; left:20px; font-size:13px; }
   body:not(.home):not(.gal) .page{ padding-top:64px; }
 }
+
+/* ============================================================
+   文章页 BGM 播放栏（.bgm）
+   固定在画面底部居中，读到哪都能点。默认不自动播放。
+   用法见 posts/zou-ma.html：一段 <div class="bgm"> + 末尾一小段脚本
+   ============================================================ */
+.bgm{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  z-index:10;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:min(360px, calc(100vw - 32px));
+  padding:9px 18px 9px 10px;
+  background:rgba(255,255,255,.96);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  border:1px solid #E3E5E9;
+  border-radius:999px;
+  box-shadow:0 4px 18px rgba(12,21,38,.06);
+  font-family:"Times New Roman",Times,serif;
+  text-align:left;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.bgm:hover{ border-color:#C9CDD4; box-shadow:0 4px 18px rgba(12,21,38,.10); }
+
+.bgm-btn{
+  flex:none;
+  width:34px; height:34px;
+  border-radius:50%;
+  border:1px solid var(--klein);
+  background:#FFFFFF;
+  color:var(--klein);
+  display:flex; align-items:center; justify-content:center;
+  padding:0;
+  cursor:pointer;
+  transition:background .18s ease, color .18s ease;
+}
+.bgm-btn:hover,
+.bgm-btn:focus-visible{ background:var(--klein); color:#FFFFFF; outline:none; }
+.bgm-btn svg{ width:12px; height:12px; display:block; fill:currentColor; }
+.bgm-btn .i-pause{ display:none; }
+.bgm.playing .bgm-btn .i-play { display:none; }
+.bgm.playing .bgm-btn .i-pause{ display:block; }
+
+.bgm-info{ flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; }
+.bgm-title{
+  font-size:13px;
+  line-height:1.2;
+  color:#000000;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.bgm-title .zh{
+  font-family:"Noto Serif SC Subset","Source Han Serif SC","Noto Serif SC",
+              "Songti SC","STSong","SimSun",serif;
+  font-weight:300;
+}
+.bgm-title i{ color:#9a9a9a; }
+
+/* 进度：一条细线，可点击跳转 */
+.bgm-bar{
+  position:relative;
+  height:12px;            /* 点击区域，线本身只有 1px */
+  cursor:pointer;
+}
+.bgm-bar::before,
+.bgm-fill{
+  content:"";
+  position:absolute;
+  left:0; top:50%;
+  height:1px;
+  transform:translateY(-50%);
+}
+.bgm-bar::before{ right:0; background:#E3E5E9; }
+.bgm-fill{ width:0; background:var(--prussian); }
+
+.bgm-time{
+  flex:none;
+  font-style:italic;
+  font-size:12px;
+  color:#9a9a9a;
+  font-variant-numeric:tabular-nums;
+  min-width:3.2em;
+  text-align:right;
+}
+
+/* 有播放栏的页面，底部留出空间，免得挡住最后一段和「返回目录」 */
+body.has-bgm .page{ padding-bottom:150px; }
+
+@media (max-width:600px){
+  .bgm{ bottom:14px; padding:8px 14px 8px 8px; gap:12px; }
+}
